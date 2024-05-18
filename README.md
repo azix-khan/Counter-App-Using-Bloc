@@ -1,16 +1,15 @@
 # counter_app_using_bloc
 
-A new Flutter project.
-
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+<img src="https://github.com/azix-khan/Counter-App-Using-Bloc/assets/138978130/b725866a-f4fa-4ea3-bad8-997b184aeb44" alt="Counter App Image" height="600" width="300">
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Flutter BLOC Counter App || Flutter Bloc State Management.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Packages Used
+
+- Flutter_bloc
+- Bloc
+- Equatable
+
