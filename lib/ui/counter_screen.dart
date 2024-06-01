@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:counter_app_using_bloc/bloc/counter/counter_bloc.dart';
 import 'package:counter_app_using_bloc/bloc/counter/counter_event.dart';
 import 'package:counter_app_using_bloc/bloc/counter/counter_state.dart';
@@ -32,7 +34,7 @@ class _CounterScreenState extends State<CounterScreen> {
           end: Alignment.bottomCenter,
           colors: [
             Color.fromARGB(255, 25, 178, 238),
-            Color.fromARGB(255, 21, 236, 229)
+            Color.fromARGB(255, 21, 236, 229),
           ],
         )),
         child: Column(
@@ -51,18 +53,20 @@ class _CounterScreenState extends State<CounterScreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 ElevatedButton(
-                    onPressed: () {
-                      context.read<CounterBloc>().add(IncrementCounter());
-                    },
-                    child: const Text('Increment')),
+                  onPressed: () {
+                    context.read<CounterBloc>().add(IncrementCounter());
+                  },
+                  child: const Text('Increment'),
+                ),
                 const SizedBox(
                   width: 20,
                 ),
                 ElevatedButton(
-                    onPressed: () {
-                      context.read<CounterBloc>().add(DecrementCounter());
-                    },
-                    child: const Text('Decrement')),
+                  onPressed: () {
+                    context.read<CounterBloc>().add(DecrementCounter());
+                  },
+                  child: const Text('Decrement'),
+                ),
               ],
             )
           ],
