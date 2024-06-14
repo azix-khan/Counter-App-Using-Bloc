@@ -15,7 +15,10 @@ class _VisibilityScreenState extends State<VisibilityScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      backgroundColor: Colors.lightBlue[900],
+      appBar: AppBar(
+        backgroundColor: Colors.lightBlue[900],
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -33,7 +36,7 @@ class _VisibilityScreenState extends State<VisibilityScreen> {
                   child: Container(
                     height: 100,
                     width: 100,
-                    color: Colors.lightBlue,
+                    color: Colors.amber,
                   ),
                 );
               },
@@ -46,16 +49,28 @@ class _VisibilityScreenState extends State<VisibilityScreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 TextButton(
+                  style: TextButton.styleFrom(
+                    foregroundColor: Colors.white,
+                  ),
                   onPressed: () {
                     context.read<VisibilityBloc>().add(VisibilityShowEvent());
                   },
-                  child: const Text("Show"),
+                  child: const Text(
+                    "Show",
+                    style: TextStyle(fontSize: 20),
+                  ),
                 ),
                 TextButton(
+                  style: TextButton.styleFrom(
+                    foregroundColor: Colors.white,
+                  ),
                   onPressed: () {
                     context.read<VisibilityBloc>().add(VisibilityHideEvent());
                   },
-                  child: const Text("Hide"),
+                  child: const Text(
+                    "Hide",
+                    style: TextStyle(fontSize: 20),
+                  ),
                 ),
               ],
             )
