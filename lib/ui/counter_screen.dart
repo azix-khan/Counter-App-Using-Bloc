@@ -1,8 +1,9 @@
 // ignore_for_file: avoid_print
 
-import 'package:counter_app_using_bloc/bloc/counter/counter_bloc.dart';
-import 'package:counter_app_using_bloc/bloc/counter/counter_event.dart';
-import 'package:counter_app_using_bloc/bloc/counter/counter_state.dart';
+import 'package:counter_app_using_bloc/bloc/Counter/counter_bloc.dart';
+import 'package:counter_app_using_bloc/bloc/Counter/counter_event.dart';
+import 'package:counter_app_using_bloc/bloc/Counter/counter_state.dart';
+import 'package:counter_app_using_bloc/ui/visibility_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -41,7 +42,12 @@ class _CounterScreenState extends State<CounterScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            BlocBuilder<CounterBloc, CounterState>(builder: (context, state) {
+            BlocBuilder<CounterBloc, CounterState>(
+                buildWhen: (previous, current) {
+              print("Privious:${previous.counter}");
+              print("Privious:${current.counter}");
+              return true;
+            }, builder: (context, state) {
               print("build");
               return Text(
                 state.counter.toString(),
@@ -71,6 +77,15 @@ class _CounterScreenState extends State<CounterScreen> {
             )
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const VisibilityScreen()));
+        },
+        child: const Icon(Icons.visibility),
       ),
     );
   }

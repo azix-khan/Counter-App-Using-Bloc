@@ -1,4 +1,5 @@
-import 'package:counter_app_using_bloc/bloc/counter/counter_bloc.dart';
+import 'package:counter_app_using_bloc/bloc/Counter/counter_bloc.dart';
+import 'package:counter_app_using_bloc/bloc/Visibility/visibility_bloc.dart';
 import 'package:counter_app_using_bloc/ui/counter_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,8 +13,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => CounterBloc(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => CounterBloc()),
+        BlocProvider(create: (context) => VisibilityBloc()),
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: '*Counter App',
