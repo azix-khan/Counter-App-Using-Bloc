@@ -54,6 +54,19 @@ class _CounterScreenState extends State<CounterScreen> {
                 style: const TextStyle(fontSize: 60),
               );
             }),
+            /* BlocListener used for functionality that needs to occur once per state change
+            such as navigation, showing a SnackBar , showing a Dialog */
+            BlocListener<CounterBloc, CounterState>(
+              listenWhen: (previous, current) => true,
+              listener: (context, state) {
+                if (state.counter == 3) {
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Text(
+                          "Counter value is ${state.counter.toString()}")));
+                }
+              },
+              child: const Text('Bloc Listener'),
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
