@@ -78,6 +78,16 @@ class _CounterScreenState extends State<CounterScreen> {
                 style: const TextStyle(fontSize: 60),
               );
             }),
+            //---> allows you to select a specific value in a Provider to listen to
+            BlocSelector<CounterBloc, CounterState, bool>(
+                // selector is nothing but a fxn that takes the current state
+                selector: (state) =>
+                    state.counter % 2 ==
+                    0, //if the count vaue is divided by 2 then it will return ture other wise false
+                builder: (context, isEven) {
+                  return isEven ? Text("Even") : Container();
+                }),
+
             /* BlocListener used for functionality that needs to occur once per state change
             such as navigation, showing a SnackBar , showing a Dialog */
             BlocListener<CounterBloc, CounterState>(
