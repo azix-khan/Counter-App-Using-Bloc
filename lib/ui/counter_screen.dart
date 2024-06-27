@@ -30,22 +30,46 @@ class _CounterScreenState extends State<CounterScreen> {
       ),
       body: Container(
         decoration: const BoxDecoration(
-            gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            Color.fromARGB(255, 25, 178, 238),
-            Color.fromARGB(255, 21, 236, 229),
-          ],
-        )),
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Color.fromARGB(255, 25, 178, 238),
+              Color.fromARGB(255, 21, 236, 229),
+            ],
+          ),
+        ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            const Text("You have pushed the button this many times:"),
+            //---> used when it is necessary to both rebuild UI and execute other reactions to state changes in the bloc
+            /*
+            BlocConsumer<CounterBloc, CounterState>(
+              listener: (context, state) {
+                if (state.counter == 3) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content:
+                          Text("Counter value is ${state.counter.toString()}"),
+                    ),
+                  );
+                }
+              },
+            builder: (context, state) {
+              print("build");
+              return Text(
+                state.counter.toString(),
+                style: const TextStyle(fontSize: 60),
+              );
+            }),
+            */
+            //---> used when we want to draw a Widget based on what is the current State
             BlocBuilder<CounterBloc, CounterState>(
                 buildWhen: (previous, current) {
-              print("Privious:${previous.counter}");
-              print("Privious:${current.counter}");
+              print("Privious: ${previous.counter}");
+              print("Current: ${current.counter}");
               return true;
             }, builder: (context, state) {
               print("build");
@@ -60,9 +84,12 @@ class _CounterScreenState extends State<CounterScreen> {
               listenWhen: (previous, current) => true,
               listener: (context, state) {
                 if (state.counter == 3) {
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                      content: Text(
-                          "Counter value is ${state.counter.toString()}")));
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content:
+                          Text("Counter value is ${state.counter.toString()}"),
+                    ),
+                  );
                 }
               },
               child: const Text('Bloc Listener'),
